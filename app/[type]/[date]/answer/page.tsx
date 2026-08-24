@@ -196,6 +196,8 @@ export default async function QuizAnswerPage({
               yesterdayAnswers={yesterdayAnswers}
               isTodayPage={isToday}
               reveal
+              typeKr={item.typeKr}
+              title={item.title}
             />
           </>
         )}

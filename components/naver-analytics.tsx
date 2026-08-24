@@ -1,7 +1,7 @@
 // quizkorea와 같은 값을 쓴다. 네이버 애널리틱스의 wa 키는 서치어드바이저에
 // 등록한 사이트에 묶이므로, today.quizbells.com을 따로 등록하고 그때 받은
 // 키로 바꿔야 이 도메인의 유입이 기록된다.
-const NAVER_ANALYTICS_ID = "256ed54a27819a0"
+const NAVER_ANALYTICS_ID = "1a98761a98bd250"
 
 /**
  * 네이버 애널리틱스 공식 스니펫을 <head>의 실제 <script> 태그로 렌더한다.

@@ -12,6 +12,7 @@ import QuizList from "@/components/quiz-list"
 import { tintClass } from "@/lib/app-theme"
 import {
   SERVICE_START_DATE,
+  getKoreaDate,
   isIndexableDate,
   kstUpdatedToIsoKst,
   resolveDateParam,
@@ -179,6 +180,24 @@ export default async function QuizDatePage({
         {/* 최상단 지면 — 로더가 실려 있을 때만 자리를 만든다 */}
         {todayContents.length > 0 && <QuizAd slotId={item.slotId} />}
 
+        {/* 과거 날짜 페이지에서 오늘로 이동 */}
+        {!isToday && (
+          <a
+            href={`/${type}/today`}
+            className="mt-2 flex items-center justify-between gap-3 rounded-[var(--radius)] bg-primary px-5 py-4 text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            <span>
+              <span className="block text-[0.9375rem] font-extrabold">
+                오늘 {format(getKoreaDate(), "M월 d일", { locale: ko })} 정답 보기
+              </span>
+              <span className="mt-0.5 block text-xs opacity-75">
+                최신 퀴즈 정답으로 이동
+              </span>
+            </span>
+            <ChevronRight className="size-5 shrink-0" />
+          </a>
+        )}
+
         {/* ── 앱 헤드 ───────────────────────────────────────── */}
         <section className={`${tintClass(type)} card-surface p-6`}>
           <div className="flex items-center gap-3.5">
@@ -260,6 +279,8 @@ export default async function QuizDatePage({
               isTodayPage={isToday}
               reveal={false}
               answerHref={answerHref}
+              typeKr={item.typeKr}
+              title={item.title}
             />
 
             {/* 목록을 다 훑고 내려온 사용자를 위한 통로 */}
