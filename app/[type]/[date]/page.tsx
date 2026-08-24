@@ -176,6 +176,7 @@ export default async function QuizDatePage({
       <JsonLd html={jsonLdString(jsonLd)} />
 
       <div className="page pt-6">
+        {/* 최상단 지면 — 로더가 실려 있을 때만 자리를 만든다 */}
         {todayContents.length > 0 && <QuizAd slotId={item.slotId} />}
 
         {/* ── 앱 헤드 ───────────────────────────────────────── */}
@@ -246,6 +247,9 @@ export default async function QuizDatePage({
           </section>
         ) : (
           <>
+            {/* 1번 문항 바로 앞 지면 — 목록에 들어가기 직전이라 눈이 멈춘다 */}
+            <QuizAd slotId={item.slotId} />
+
             <h2 className="mt-6 mb-3 px-1 text-sm font-extrabold text-muted-foreground">
               출제 문제 <span className="tabular">{contents.length}</span>
             </h2>

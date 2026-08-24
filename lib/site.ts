@@ -5,21 +5,18 @@
 /**
  * canonical·OG·사이트맵이 전부 여기서 파생된다.
  *
- * 도메인이 아직 정해지지 않아 환경 변수로 받는다. 배포 전에 반드시 SITE_URL을
- * 실제 도메인으로 설정할 것 — 폴백이 그대로 나가면 canonical과 사이트맵이
- * 전부 localhost를 가리킨다.
+ * 실제 도메인을 기본값으로 박아 둔다. 환경 변수를 깜빡하면 canonical과
+ * 사이트맵이 통째로 localhost를 가리키는데, 그건 배포하고 나서야 드러나는
+ * 종류의 사고다. quizkorea도 같은 이유로 상수로 두고 있다.
  *
- * NEXT_PUBLIC_ 접두어를 쓰지 않는 이유는 supabase.ts와 같다:
- *   NEXT_PUBLIC_*  → next build 시점에 번들에 리터럴로 박힌다. 값을 바꾸려면
- *                    재배포해야 하고, wrangler의 keep_vars도 지켜주지 않는다.
- *   일반 변수      → process.env 런타임 조회로 남는다. Worker의 환경 변수만
- *                    바꾸면 바로 반영된다.
- * 이 상수는 서버(메타데이터·JSON-LD·사이트맵)에서만 쓰므로 런타임 조회로 충분하다.
+ * SITE_URL로 덮어쓸 수는 있게 남겨둔다(스테이징·로컬 미리보기용).
+ * NEXT_PUBLIC_ 접두어를 쓰지 않는 이유는 supabase.ts와 같다 — 접두어가 붙으면
+ * 빌드 시점에 번들로 박혀 값을 바꿀 때마다 재배포해야 하고, wrangler의
+ * keep_vars도 지켜주지 않는다. 이 값은 서버(메타데이터·JSON-LD·사이트맵)에서만
+ * 쓰므로 런타임 조회로 충분하다.
  */
 export const SITE_URL = (
-  process.env.SITE_URL ||
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "http://localhost:3000"
+  process.env.SITE_URL || "https://today.quizbells.com"
 ).replace(/\/$/, "");
 
 export const SITE_NAME = "투데이퀴즈";
