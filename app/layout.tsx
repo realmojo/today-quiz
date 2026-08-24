@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
 import "./globals.css"
+import GoogleAnalytics from "@/components/google-analytics"
+import NaverAnalytics from "@/components/naver-analytics"
 import SiteFooter from "@/components/site-footer"
 import SiteHeader from "@/components/site-header"
 import {
@@ -79,6 +81,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href={PRETENDARD_CSS} />
+        <GoogleAnalytics />
+        <NaverAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdString(siteJsonLd) }}
