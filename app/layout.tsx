@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
+  // 아이콘 파일 자체는 app/favicon.ico · icon.svg · apple-icon.png가
+  // 파일 규약으로 잡아준다. 매니페스트만 여기서 연결한다.
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
